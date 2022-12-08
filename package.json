@@ -1,0 +1,67 @@
+{
+  "name": "@aimwhy/run",
+  "version": "0.1.0",
+  "description": "run",
+  "homepage": "",
+  "type": "module",
+  "keywords": [
+    "dataTransform",
+    "接口数据",
+    "aimwhy",
+    "转换"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AimWhy/run"
+  },
+  "bugs": {
+    "url": "https://github.com/AimWhy/run/issues"
+  },
+  "license": "MIT",
+  "author": "aimWhy",
+  "funding": "https://github.com/AimWhy/run",
+  "engines": {
+    "node": ">= 16"
+  },
+  "main": "dist/run.module.js",
+  "module": "dist/run.module.js",
+  "types": "dist/run.module.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist/run.mjs",
+    "dist/run.module.js",
+    "dist/run.module.d.ts",
+    "src/",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/plugin-syntax-import-assertions": "^7.20.0",
+    "@rollup/plugin-commonjs": "^23.0.2",
+    "@rollup/plugin-image": "^3.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.1",
+    "cross-env": "^7.0.3",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.29.0",
+    "eslint-plugin-jsdoc": "^39.6.2",
+    "rollup": "^3.2.5",
+    "rollup-plugin-bundle-size": "^1.0.3",
+    "rollup-plugin-string": "^3.0.0",
+    "terser": "^5.15.1",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "build": "npm run lint && rollup -c --silent",
+    "dist": " npm run build && mkdir dist && cp -fR build/*.* dist/ && npm run types",
+    "lint": "eslint src/** rollup.config.mjs",
+    "prepublishOnly": "npm run clean && npm run dist",
+    "clean": "del-cli --force build dist docs",
+    "types": "tsc src/index.js --declaration --allowJs --emitDeclarationOnly --outfile dist/run.module.d.ts"
+  }
+}
